@@ -1,35 +1,45 @@
+include<stdio.h>
 #include<stdio.h>
-int main()
-{
-   float salario, descuento, bono, salariob, desc, bo, desc1;
-   int op, vec;
-   vec=1;
-   printf("Escribe el salario: $");
-   scanf("%f", &salario);
-   printf("introduce un numero de acuerdo a lo que deseas realizar: 1-Descuento , 2-Bono, 3-Salario bruto: ");
-   scanf("%i", &op);   
-   switch (op)
-   {
-	 case 1:
-       desc=(salario*0.10);
-       desc1=salario-desc;
-       printf("El salario con descuento es de: $ %f", desc1);
-     break;
-    
-	 case 2: 
-        bo=(salario*.15);
-        bono=salario+bo;
-        printf("El salario con bono es de: $%f",bono);
-     break;
-    
-	 case 3: 
-	   bo=(salario*.15);
-        salariob=salario+bo;
-        printf("El salario bruto es de: $%f",salariob);
-     break;
-    
-	 default: printf( "Error" );
-	 
-   }
-  return 0; 
+#include<string.h>
+#define MAX_STRLEN 256
+
+
+int main() {
+	float bono;
+	float descuento;
+	int op;
+	char respuesta[MAX_STRLEN];
+	float sueldo;
+	float sueldobruto;
+	printf("ingresa el sueldo\n");
+	scanf("%f",&sueldo);
+	do {
+		printf("que operacion deseas realizar\n");
+		printf("1 descuento\n");
+		printf("2 bono\n");
+		printf("3 sueldo bruto\n");
+		scanf("%i",&op);
+		switch (op) {
+		case 1:
+			descuento = sueldo*.10;
+			printf("el salario con descuento es : %f\n",descuento);
+			printf("desea hacer otra operacion 1si,2,no\n");
+			scanf("%s",respuesta);
+			break;
+		case 2:
+			bono = sueldo*.15;
+			printf("el bono es :  %f\n",bono);
+			printf("desea hacer otra operacion 1si,2,no\n");
+			scanf("%s",respuesta);
+			printf("desea hacer otra operacion 1si,2,no\n");
+			break;
+		case 3:
+			sueldobruto = sueldo+bono;
+			printf("el sueldo bruto es:  %f\n",sueldobruto);
+			printf("desea hacer otra operacion 1si,2,no\n");
+			scanf("%s",respuesta);
+			break;
+		}
+	} while (strcmp(respuesta,"2")!=0);
+	return 0;
 }
