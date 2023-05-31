@@ -1,7 +1,6 @@
 /* Programa num7
-TÌtulo: comentarios 
 fecha: 31/may/23
-Nombre: Sayra Gonz·lez GarcÌa*/
+Nombre: Sayra Gonz√°lez Garc√≠a*/
 #include<stdio.h>
 int main() {
 	int n;
