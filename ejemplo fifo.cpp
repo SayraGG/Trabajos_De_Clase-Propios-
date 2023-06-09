@@ -1,45 +1,34 @@
-include<stdio.h>
-#include<stdio.h>
-#include<string.h>
-#define MAX_STRLEN 256
+#include <iostream>
 
+using namespace std;
 
-int main() {
-	float bono;
-	float descuento;
-	int op;
-	char respuesta[MAX_STRLEN];
-	float sueldo;
-	float sueldobruto;
-	printf("ingresa el sueldo\n");
-	scanf("%f",&sueldo);
-	do {
-		printf("que operacion deseas realizar\n");
-		printf("1 descuento\n");
-		printf("2 bono\n");
-		printf("3 sueldo bruto\n");
-		scanf("%i",&op);
-		switch (op) {
-		case 1:
-			descuento = sueldo*.10;
-			printf("el salario con descuento es : %f\n",descuento);
-			printf("desea hacer otra operacion 1si,2,no\n");
-			scanf("%s",respuesta);
-			break;
-		case 2:
-			bono = sueldo*.15;
-			printf("el bono es :  %f\n",bono);
-			printf("desea hacer otra operacion 1si,2,no\n");
-			scanf("%s",respuesta);
-			printf("desea hacer otra operacion 1si,2,no\n");
-			break;
-		case 3:
-			sueldobruto = sueldo+bono;
-			printf("el sueldo bruto es:  %f\n",sueldobruto);
-			printf("desea hacer otra operacion 1si,2,no\n");
-			scanf("%s",respuesta);
-			break;
-		}
-	} while (strcmp(respuesta,"2")!=0);
-	return 0;
+#define limite 5
+void insertar(char datos[],int tiempo[],int l){
+    for(int i = 0; i < (l); i++){
+        cout << "inserte el tiempo en el proceso [" << datos[i] << "]: ";
+        cin >> tiempo[i];
+        system("cls");
+    }
+}
+void fifo(char datos[],int tiempo[], int l){
+    int tiempoTotal = 0;
+    float tiempoReturn = 0.0f;
+    insertar(datos,tiempo, l);
+    for(int j = 0;j < l; j++){
+        tiempoTotal += tiempo[j];
+        tiempoReturn += tiempoTotal;
+        cout <<"\n""tiempo de retorno de["<<datos[j]<<"]: "<<tiempoTotal<<"\t";
+    }
+    tiempoReturn = tiempoReturn / l;
+    cout<<"\nEl tiempo de las entradas son: "<<tiempoReturn;
+}
+int main(){
+    cout<<"\t\t\tSimulacion de FIFO en C++"<<endl;
+    cout<<"\t\t_______________\n"<<endl;
+    char datos[limite] = {'a','b','c','d','e'};
+    int tiempo[limite];
+    fifo(datos,tiempo,limite);
+    cin.get();
+    cin.get();
+    return 0;
 }
