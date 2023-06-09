@@ -1,58 +1,70 @@
 #include <stdio.h>
-#include <stdlib.h>
+void qs(int lista[],int limite_izq,int limite_der)
+{
 
-void quick(int array[], int min, int max){
-        int i = min;
-        int j = max;
-        int temp;
-        int mitad = array[(i + j)/2];
+    int izq,der,temporal,pivote;
+    izq=limite_izq;
+    der = limite_der;
+    pivote = lista[(izq+der)/2];
 
-        do{
-                while(array[i] < mitad && i < max)
-                        i++;
-                while(array[j] > mitad && j > min)
-                        j--;
-                if(i <= j){
-                        temp = array[i];
-                        array[i] = array[j];
-                        array[j] = temp;
-                        i++;
-                        j--;
-                }
-        }while(i <= j);
+    do{
 
-        if(min < j)
-                quick(array, min, i - 1);
-        if(i < max)
-                quick(array, i + 1, max);
+        while(lista[izq]<pivote && izq<limite_der)izq++;
+        while(pivote<lista[der] && der > limite_izq)der--;
+        if(izq <=der)
+
+        {
+            temporal= lista[izq];
+            lista[izq]=lista[der];
+            lista[der]=temporal;
+            izq++;
+            der--;
+        }
+    }while(izq<=der);
+
+    if(limite_izq<der){qs(lista,limite_izq,der);}
+
+    if(limite_der>izq){qs(lista,izq,limite_der);}
+}
+void quicksort(int lista[],int n)
+
+{
+
+    qs(lista,0,n-1);
+
 }
 
-int main(){
-        int size, a[100], i, j, k;
+int main(int argc, const char * argv[])
 
-        printf("De que tamaño quieres el array? ");
-        scanf("%d", &size);
+{
 
-        if(size > 100){
-                printf("El valor maximo es 100 \n");
-        }else{
-                for(i = 0; i < size; i++){
-                        printf("array[%d] = ", i + 1);
-                        scanf("%d", &a[i]);
-                }
-        }
+    int lista[] ={100,56,0,1,-45,2,46,5,9,6,67,23,5};
 
-        printf("ARRAY ORIGINAL\n");
-        for(j = 0; j < size; j++){
-                printf("%d \n", a[j]);
-        }
+    int size = sizeof(lista)/sizeof(int);
+    printf("Lista Desordenada \n");
 
-        printf("ARRAY ORDENADO \n");
+   for (int i=0; i<size; i++) {
 
-        quick(a, 0, size - 1);
+        printf("%d",lista[i]);
 
-        for(k = 0; k < size; k++){
-                printf("%d \n", a[k]);
-        }
+        if(i<size-1)
 
+            printf(",");
+    }
+
+    printf("\n");
+    quicksort(lista,size);
+    printf("Lista Ordenada \n");
+
+    for (int i=0; i<size; i++) {
+
+        printf("%d",lista[i]);
+
+        if(i<size-1)
+
+            printf(",");
+    }
+
+    return 0;
 }
+
